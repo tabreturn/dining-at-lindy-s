@@ -1,5 +1,7 @@
 function love.load()
   
+  tween = require 'lib/tween'
+  
   -- window setup
   love.window.setTitle('Dining at Lindy\'s')
   winwidth   = 1920
@@ -10,26 +12,43 @@ function love.load()
   love.graphics.setBackgroundColor(255, 255, 255)
   
   -- assets
-  fontcute = love.graphics.newFont('fonts/cute.ttf', 100)
-  fontread = love.graphics.newFont('fonts/quicksand.ttf', 35)
-  ingapple = love.graphics.newImage('ingredients/apple.png')
+  fontcute  = love.graphics.newFont('fonts/cute.ttf', 100)
+  fontread  = love.graphics.newFont('fonts/quicksand.ttf', 35)
+  ingapple  = love.graphics.newImage('ingredients/apple.png')
   ingcarrot = love.graphics.newImage('ingredients/apple.png')
-  ingtofu = love.graphics.newImage('ingredients/tofu.png')
+  ingtofu   = love.graphics.newImage('ingredients/tofu.png')
+  
+  -- tweens
+  posapple  = { x=100, y=0 }
+  poscarrot = { x=400, y=0 }
+  postofu   = { x=600, y=0 }
+  twnapple  = tween.new(1.5, posapple, {y=300}, 'outBounce')
+  twncarrot = tween.new(1.5, poscarrot, {y=300}, 'outBounce')
+  twntofu   = tween.new(1.5, postofu, {y=300}, 'outBounce')
   
   -- stage variables
   level = 0
   log = ''
-  
+
 end
 
 
 function love.update(dt)
   
+  -- tween updates
+  twnapple:update(dt)
+  twncarrot:update(dt)
+  twntofu:update(dt)
 end
 
 function love.draw()
   
   love.graphics.setColor(255, 255, 255)
+  
+  love.graphics.draw(ingapple, posapple.x, posapple.y)
+  love.graphics.draw(ingcarrot, poscarrot.x, poscarrot.y)
+  love.graphics.draw(ingtofu, postofu.x, postofu.y)
+  
   love.graphics.draw(ingapple, 0, 0, 0.5, 0.5) --love.graphics.draw(drawable, x, y, r, sx, sy, ox, oy, kx, ky)
   
   if 0 == 0 then

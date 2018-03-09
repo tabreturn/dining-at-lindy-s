@@ -6,8 +6,9 @@ In this game, your job is to save Mr. Yum (or, Tom, to his friends) from drownin
 
 Artist: Mary Guo  
 
-Made with [löve](https://love2d.org/) <3
-Fonts: Cute Font by Paula Tennet; Quicksand be Andrew Paglinawan
+Made with [löve](https://love2d.org/) <3  
+Fonts: Cute Font by Paula Tennet; Quicksand be Andrew Paglinawan  
+Libraries: tween.lua by kikito
 
 Open Jam Aotearoa 2018 entry
 (Game Jam theme: "soup")
