@@ -10,3 +10,12 @@ Made with [löve](https://love2d.org/) <3
 
 Open Jam Aotearoa 2018 entry
 (Game Jam theme: "soup")
+
+
+## To-Do
+
+* key input selection
+* bubble animation
+* answer match
+
+
