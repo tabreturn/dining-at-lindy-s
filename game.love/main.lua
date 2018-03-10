@@ -38,10 +38,74 @@ function love.update(dt)
 end
 
 function love.draw()
+  
+  log = ''
 
   for k,v in pairs(ingredients) do
     ingredients[k]:draw()
   end
+  
+  -- splash screen
+  if level == 0 then
+    love.graphics.setColor(255, 255, 255)
+    img = love.graphics.newImage('levels/0.png')
+    love.graphics.draw(img)
+    -- selections
+    if love.keyboard.isDown('z') then
+      log = 'next'
+      level = level+1;
+    elseif love.keyboard.isDown('x') then
+      log = 'x'
+    elseif love.keyboard.isDown('c') then
+      log = 'c'
+    end
+  end
+  
+  -- level 1
+  if level == 1 then
+    love.graphics.setColor(255, 255, 255)
+    img = love.graphics.newImage('levels/1.png')
+    love.graphics.draw(img)
+    -- selections
+    if love.keyboard.isDown('z') then
+      log = 'option z'
+    elseif love.keyboard.isDown('x') then
+      log = 'option x'
+    elseif love.keyboard.isDown('c') then
+      log = 'option c'
+    end
+  end
+  
+  -- level 2
+  if level == 2 then
+    love.graphics.setColor(255, 255, 255)
+    img = love.graphics.newImage('levels/1.png')
+    love.graphics.draw(img)
+    -- selections
+    if love.keyboard.isDown('z') then
+      log = 'option z'
+    elseif love.keyboard.isDown('x') then
+      log = 'option x'
+    elseif love.keyboard.isDown('c') then
+      log = 'option c'
+    end
+  end
+  
+  -- level 3
+  if level == 3 then
+    love.graphics.setColor(255, 255, 255)
+    img = love.graphics.newImage('levels/1.png')
+    love.graphics.draw(img)
+    -- selections
+    if love.keyboard.isDown('z') then
+      log = 'option z'
+    elseif love.keyboard.isDown('x') then
+      log = 'option x'
+    elseif love.keyboard.isDown('c') then
+      log = 'option c'
+    end
+  end
+
   
   if 0 == 0 then
     love.graphics.setColor(0, 0, 0)
@@ -49,14 +113,7 @@ function love.draw()
     love.graphics.print(level, winwidth-fontcute:getWidth(level)-winmargin, 0+winmargin)
   end
   
-  -- selections
-  if love.keyboard.isDown('z') then
-    log = 'z'
-  elseif love.keyboard.isDown('x') then
-    log = 'x'
-  elseif love.keyboard.isDown('c') then
-    log = 'c'
-  end
+
   
   -- quit game
   if love.keyboard.isDown('q') then
