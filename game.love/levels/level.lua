@@ -1,25 +1,29 @@
 Level = {}
 
-winmargin = 50
-
-function Level:create(level, imglevel, imgsoup)
+function Level:create(level, imgsoup, imglevel)
   self.__index = self
   
   return setmetatable({
-    level = level,
-    imglevel = love.graphics.newImage(imglevel),
-    imgsoup = imgsoup
+    level    = level,
+    imgsoup  = love.graphics.newImage(imgsoup),
+    imglevel = imglevel
   }, self)
 end
 
 function Level:draw()
-  love.graphics.setColor(0, 0, 0)
-  --love.graphics.print(level, winwidth-fontcute:getWidth(level)-winmargin, 0+winmargin)
-  love.graphics.draw(self.imglevel, 0, 0)
-  
-  if imgsoup then
-    love.graphics.draw(love.graphics.newImage(self.imgsoup), winwidth-imgsoup:getWidth()-winmargin, y+winmargin)
+  if self.imglevel then
+    bg = love.graphics.newImage('levels/background.png')
+    love.graphics.draw(bg, 0, 0)
+    lvl = love.graphics.newImage(self.imglevel)
+    love.graphics.draw(lvl, winwidth-lvl:getWidth()-winmargin, 0+winmargin)
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.setFont(fontcute)
+    xtrapad = 10
+    love.graphics.print(level, winwidth-lvl:getWidth()+xtrapad, 0+winmargin+xtrapad)
   end
+  
+  love.graphics.setColor(255, 255, 255)
+  love.graphics.draw(self.imgsoup, 0, 0)
 end
 
 return Level

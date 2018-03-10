@@ -9,6 +9,7 @@ function love.load()
   love.window.setTitle('Dining at Lindy\'s')
   winwidth   = 1920
   winheight  = 1080
+  winmargin  = 50
   hdpiscale  = 2
   love.window.setMode(winwidth/hdpiscale, winheight/hdpiscale, {highdpi=true})
   love.graphics.setBackgroundColor(160, 100, 50)
@@ -35,9 +36,9 @@ function love.load()
   
   levels = {
     level0 = level:create(0, 'levels/splash.png', false),
-    level1 = level:create(1, 'levels/level1.png', 'levels/soup1.png'),
-    level2 = level:create(2, 'levels/level2.png', 'levels/soup2.png'),
-    level3 = level:create(3, 'levels/level3.png', 'levels/soup3.png')
+    level1 = level:create(1, 'levels/soup1.png', 'levels/level1.png'),
+    level2 = level:create(2, 'levels/soup2.png', 'levels/level2.png'),
+    level3 = level:create(3, 'levels/soup3.png', 'levels/level3.png')
   }
   
   -- stage variables
@@ -64,27 +65,18 @@ function love.draw()
   -- splash screen
   
   if level == 0 then
-    
-    --img = love.graphics.newImage('levels/background.png')
-    --love.graphics.draw(img)
     levels['level0']:draw()
-    -- selections
+    
     if love.keyboard.isDown('z') then
-      log = 'next'
       level = level+1;
-    elseif love.keyboard.isDown('x') then
-      log = 'x'
-    elseif love.keyboard.isDown('c') then
-      log = 'c'
     end
   end
   
   -- level 1
   
   if level == 1 then
-    img = love.graphics.newImage('levels/1.png')
-    love.graphics.draw(img)
-    -- selections
+    levels['level1']:draw()
+    
     if love.keyboard.isDown('z') then
       log = 'option z'
     elseif love.keyboard.isDown('x') then
@@ -97,10 +89,8 @@ function love.draw()
   -- level 2
   
   if level == 2 then
-    love.graphics.setColor(255, 255, 255)
-    img = love.graphics.newImage('levels/1.png')
-    love.graphics.draw(img)
-    -- selections
+    levels['level2']:draw()
+    
     if love.keyboard.isDown('z') then
       log = 'option z'
     elseif love.keyboard.isDown('x') then
@@ -113,10 +103,8 @@ function love.draw()
   -- level 3
   
   if level == 3 then
-    love.graphics.setColor(255, 255, 255)
-    img = love.graphics.newImage('levels/1.png')
-    love.graphics.draw(img)
-    -- selections
+    levels['level2']:draw()
+    
     if love.keyboard.isDown('z') then
       log = 'option z'
     elseif love.keyboard.isDown('x') then
@@ -124,14 +112,6 @@ function love.draw()
     elseif love.keyboard.isDown('c') then
       log = 'option c'
     end
-  end
-
-  -- TEXT ???
-  
-  if 0 == 0 then
-    love.graphics.setColor(0, 0, 0)
-    love.graphics.setFont(fontcute)
-    love.graphics.print(level, winwidth-fontcute:getWidth(level), 0)
   end
   
   -- place ingredients
@@ -148,6 +128,7 @@ function love.draw()
   
   -- debug log
   
+  love.graphics.setColor(255, 0, 0)
   love.graphics.setFont(fontread)
   love.graphics.print(log, 0, winheight-100)
   
