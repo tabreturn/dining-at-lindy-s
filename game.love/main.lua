@@ -83,8 +83,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  
-  log = ''
+
   love.graphics.setColor(255, 255, 255)
   
   -- splash screen
@@ -113,15 +112,11 @@ function love.draw()
     boards:draw()
     boards:animateIn()
     
-    recipes:draw(3)
+    recipes:draw(1)
     
     if brdsin then
       recipes:animateIn()
     end
-    
-    --for k,v in pairs(recipes1_1) do
-      --recipes1_1[k]:draw()
-    --end
     
     if love.keyboard.isDown('z') then
       log = 'option z'
@@ -174,11 +169,5 @@ function love.draw()
   if love.keyboard.isDown('q') then
     love.event.quit(0)
   end
-  
-  -- debug log
-  
-  love.graphics.setColor(255, 0, 0)
-  love.graphics.setFont(fontreadsml)
-  love.graphics.print(log, 0, winheight-100)
   
 end

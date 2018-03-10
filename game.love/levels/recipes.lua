@@ -70,8 +70,6 @@ function layoutBoard(recipe, brdx, brdy, letter)
     col = col+1
   end
   
-  print (recposc.y)
-  
   if recposc.y > 700 then
     love.graphics.setColor(0, 0, 0)
     love.graphics.setFont(fontcutemed)
