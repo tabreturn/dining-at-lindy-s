@@ -1,6 +1,10 @@
 function love.load()
   
   tween = require 'lib/tween'
+  require 'ingredient'
+  
+bnvar = Button.new('args')
+
   
   -- window setup
   love.window.setTitle('Dining at Lindy\'s')
@@ -39,11 +43,17 @@ function love.update(dt)
   twnapple:update(dt)
   twncarrot:update(dt)
   twntofu:update(dt)
+  
 end
 
 function love.draw()
   
+  bnvar:draw()
+  
   love.graphics.setColor(255, 255, 255)
+  
+  --love.graphics.draw(player1.img, player1.x, player1.y)
+  --love.graphics.draw(player2.img, player2.x, player2.y)
   
   love.graphics.draw(ingapple, posapple.x, posapple.y)
   love.graphics.draw(ingcarrot, poscarrot.x, poscarrot.y)
