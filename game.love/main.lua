@@ -1,9 +1,10 @@
---tween      = require 'lib/tween'
-ingredient = require 'ingredients/ingredient'
+tween      = require 'lib/tween'
 level      = require 'levels/level'
 anim8      = require 'lib/anim8'
              local splashimg, splashanm
-
+             
+ingredient = require 'ingredients/ingredient'
+boards     = require 'ingredients/boards'
 title      = 'Dining at Lindy\'s'
 
 function love.load()
@@ -43,10 +44,12 @@ function love.load()
   }
   
   levels = {
-    level1 = level:create(1, 'levels/soup1.png', 'levels/background.png', 'levels/level1.png'),
-    level2 = level:create(2, 'levels/soup2.png', 'levels/background.png', 'levels/level2.png'),
-    level3 = level:create(3, 'levels/soup3.png', 'levels/background.png', 'levels/level3.png')
+    level1 = level:create(1, 'levels/soup1.png', 'levels/level1.png'),
+    level2 = level:create(2, 'levels/soup2.png', 'levels/level2.png'),
+    level3 = level:create(3, 'levels/soup3.png', 'levels/level3.png')
   }
+  
+  boards:create()
   
   -- animation
   
@@ -65,6 +68,7 @@ end
 function love.update(dt)
   
   splashanm:update(dt)
+  boards:update(dt)
   
   for k,v in pairs(ingredients) do
     ingredients[k]:update(dt)
@@ -99,6 +103,9 @@ function love.draw()
   
   if level == 1 then
     levels['level1']:draw()
+    
+    boards:AnimateIn()
+    boards:draw()
     
     if love.keyboard.isDown('z') then
       log = 'option z'

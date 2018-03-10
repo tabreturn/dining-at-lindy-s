@@ -1,8 +1,6 @@
 Ingredient = {}
 
-tween = require 'lib/tween'
-
-pos = {x=0, y=0}
+local pos = {x=0, y=0}
 
 function Ingredient:create(x, y, img)
   self.__index = self
