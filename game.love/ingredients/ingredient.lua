@@ -19,7 +19,7 @@ function Ingredient:update(dt)
 end
 
 function Ingredient:draw()
-  love.graphics.setColor(0, 0, 0)
+  love.graphics.setColor(255, 255, 255)
   love.graphics.draw(self.img, pos.x+self.x, pos.y+self.y) 
 end
 
