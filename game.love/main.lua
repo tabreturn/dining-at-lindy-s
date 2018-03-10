@@ -1,10 +1,9 @@
 tween      = require 'lib/tween'
-level      = require 'levels/level'
+
 anim8      = require 'lib/anim8'
              local splashimg, splashanm
              
-ingredient = require 'ingredients/ingredient'
-boards     = require 'ingredients/boards'
+
 title      = 'Dining at Lindy\'s'
 
 function love.load()
@@ -21,6 +20,13 @@ function love.load()
   
   -- assets
   
+  levelbg = love.graphics.newImage('levels/background.png')
+  levelstm = love.graphics.newImage('levels/steam.png')
+  
+  ingredient = require 'ingredients/ingredient'
+boards     = require 'ingredients/boards'
+level      = require 'levels/level'
+  
   fontcutesml  = love.graphics.newFont('fonts/cute.ttf', 50)
   fontcutemed  = love.graphics.newFont('fonts/cute.ttf', 100)
   fontcutelrg  = love.graphics.newFont('fonts/cute.ttf', 200)
@@ -28,6 +34,7 @@ function love.load()
   fontreadmed  = love.graphics.newFont('fonts/quicksand.ttf', 30)
   fontreadlrg  = love.graphics.newFont('fonts/quicksand.ttf', 50)
   
+  --[[
   ingredients = {
     ingapple     = ingredient:create(100, 0, 'ingredients/(clubs)apple.png'),
     ingegg       = ingredient:create(100, 0, 'ingredients/(clubs)egg.png'),
@@ -41,7 +48,7 @@ function love.load()
     ingchicken   = ingredient:create(100, 0, 'ingredients/(spades)chicken.png'),
     ingicecream  = ingredient:create(100, 0, 'ingredients/(spades)icecream.png'),
     ingmushroom  = ingredient:create(100, 0, 'ingredients/(spades)mushroom.png')
-  }
+  }]]--
   
   levels = {
     level1 = level:create(1, 'levels/soup1.png', 'levels/level1.png'),
@@ -66,12 +73,8 @@ end
 
 function love.update(dt)
   
-  splashanm:update(dt)
-  boards:update(dt)
-  
-  --for k,v in pairs(ingredients) do
-  --  ingredients[k]:update(dt)
-  --end
+  --splashanm:update(dt)
+  --boards:update(dt)
   
 end
 
@@ -82,15 +85,15 @@ function love.draw()
   -- splash screen
   
   if level == 0 then
-    love.graphics.setColor(255, 255, 255)
-    splashanm:draw(splashimg, 768, 432)
+    --love.graphics.setColor(255, 255, 255)
+    --splashanm:draw(splashimg, 768, 432)
     
-    love.graphics.setColor(0, 0, 0)
-    love.graphics.setFont(fontcutelrg)
-    love.graphics.print(title, 408, 180)
+    --love.graphics.setColor(0, 0, 0)
+    --love.graphics.setFont(fontcutelrg)
+    --love.graphics.print(title, 408, 180)
     
-    love.graphics.setFont(fontreadmed)
-    love.graphics.print('press enter to begin', 820, winheight-200)
+    --love.graphics.setFont(fontreadmed)
+    --love.graphics.print('press enter to begin', 820, winheight-200)
     
     if love.keyboard.isDown('return') then
       level = level+1;
@@ -102,8 +105,12 @@ function love.draw()
   if level == 1 then
     levels['level1']:draw()
     
-    boards:AnimateIn()
-    boards:draw()
+    --boards:AnimateIn()
+    --boards:draw()
+    
+    --for k,v in pairs(ingredients) do
+      --ingredients[k]:draw()
+    --end
     
     if love.keyboard.isDown('z') then
       log = 'option z'
@@ -147,9 +154,9 @@ function love.draw()
   
   -- place ingredients
   
-  for k,v in pairs(ingredients) do
+  --for k,v in pairs(ingredients) do
     --ingredients[k]:draw()
-  end 
+  --end 
   
   -- quit game
   

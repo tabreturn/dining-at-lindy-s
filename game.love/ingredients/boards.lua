@@ -31,11 +31,13 @@ end
 function Boards:draw()
   love.graphics.setColor(255, 255, 255)
   board1 = love.graphics.newImage('ingredients/board.png')
+  
   board2 = love.graphics.newImage('ingredients/board.png')
   board3 = love.graphics.newImage('ingredients/board.png')
   love.graphics.draw(board1, brdpos1.x, 100)
   love.graphics.draw(board2, brdpos2.x, 400)
-  love.graphics.draw(board3, brdpos3.x, 700) 
+  love.graphics.draw(board3, brdpos3.x, 700)
+
 end
 
 return Boards
