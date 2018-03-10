@@ -23,7 +23,9 @@ function love.load()
   fontcutesml  = love.graphics.newFont('fonts/cute.ttf', 50)
   fontcutemed  = love.graphics.newFont('fonts/cute.ttf', 100)
   fontcutelrg  = love.graphics.newFont('fonts/cute.ttf', 200)
-  fontread  = love.graphics.newFont('fonts/quicksand.ttf', 35)
+  fontreadsml  = love.graphics.newFont('fonts/quicksand.ttf', 15)
+  fontreadmed  = love.graphics.newFont('fonts/quicksand.ttf', 30)
+  fontreadlrg  = love.graphics.newFont('fonts/quicksand.ttf', 50)
   
   ingredients = {
     ingapple     = ingredient:create(100, 0, 'ingredients/(clubs)apple.png'),
@@ -79,11 +81,14 @@ function love.draw()
   
   if level == 0 then
     love.graphics.setColor(255, 255, 255)
-    splashanm:draw(splashimg, winwidth/2.5, winheight/2)
+    splashanm:draw(splashimg, winwidth/2.5, winheight/2.5)
     
     love.graphics.setColor(0, 0, 0)
     love.graphics.setFont(fontcutelrg)
-    love.graphics.print(title, winwidth/4.7, winheight/4)
+    love.graphics.print(title, winwidth/4.7, winheight/6)
+    
+    love.graphics.setFont(fontreadmed)
+    love.graphics.print('press Z to begin', winwidth/2.25, winheight-200)
     
     if love.keyboard.isDown('z') then
       level = level+1;
@@ -147,7 +152,7 @@ function love.draw()
   -- debug log
   
   love.graphics.setColor(255, 0, 0)
-  love.graphics.setFont(fontread)
+  love.graphics.setFont(fontreadsml)
   love.graphics.print(log, 0, winheight-100)
   
 end
