@@ -11,7 +11,7 @@ end
 
 function Ingredient:draw()
   love.graphics.setColor(255, 255, 255)
-  love.graphics.draw(self.img, 0, 0) 
+  love.graphics.draw(self.img, self.x, self.y, 0.23, 0.23) 
 end
 
 return Ingredient

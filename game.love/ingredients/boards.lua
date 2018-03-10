@@ -16,13 +16,17 @@ function Boards:update(dt)
   twn1:update(dt)
   twn2:update(dt)
   twn3:update(dt)
+  
+  if brdpos3.x > 0 then
+    brdsin = true
+  end
 end
 
-function Boards:AnimateIn()
+function Boards:animateIn()
   if brdanim == false then
-    twn1 = tween.new(1.5, brdpos1, {x=20}, 'inOutBack')
-    twn2 = tween.new(2.0, brdpos2, {x=20}, 'inOutBack')
-    twn3 = tween.new(2.5, brdpos3, {x=20}, 'inOutBack')
+    twn1 = tween.new(1.4, brdpos1, {x=20}, 'inOutBack')
+    twn2 = tween.new(1.8, brdpos2, {x=20}, 'inOutBack')
+    twn3 = tween.new(2.0, brdpos3, {x=20}, 'inOutBack')
   end
   
   brdanim = true;
@@ -30,14 +34,9 @@ end
 
 function Boards:draw()
   love.graphics.setColor(255, 255, 255)
-  board1 = love.graphics.newImage('ingredients/board.png')
-  
-  board2 = love.graphics.newImage('ingredients/board.png')
-  board3 = love.graphics.newImage('ingredients/board.png')
-  love.graphics.draw(board1, brdpos1.x, 100)
-  love.graphics.draw(board2, brdpos2.x, 400)
-  love.graphics.draw(board3, brdpos3.x, 700)
-
+  love.graphics.draw(board1, brdpos1.x, 100, -0.02)
+  love.graphics.draw(board2, brdpos2.x, 400, -0.01)
+  love.graphics.draw(board3, brdpos3.x, 700, 0.01)
 end
 
 return Boards
