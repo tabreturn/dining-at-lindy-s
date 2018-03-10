@@ -90,9 +90,9 @@ function love.draw()
     love.graphics.print(title, 408, 180)
     
     love.graphics.setFont(fontreadmed)
-    love.graphics.print('press Z to begin', 853, winheight-200)
+    love.graphics.print('press enter to begin', 820, winheight-200)
     
-    if love.keyboard.isDown('z') then
+    if love.keyboard.isDown('return') then
       level = level+1;
     end
   end
@@ -107,10 +107,13 @@ function love.draw()
     
     if love.keyboard.isDown('z') then
       log = 'option z'
+      level = level+1;
     elseif love.keyboard.isDown('x') then
       log = 'option x'
+      level = 0;
     elseif love.keyboard.isDown('c') then
       log = 'option c'
+      level = 0;
     end
   end
   
