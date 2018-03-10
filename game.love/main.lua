@@ -60,7 +60,6 @@ function love.load()
   -- stage variables
   
   level = 0
-  log = ''
 
 end
 
@@ -70,29 +69,28 @@ function love.update(dt)
   splashanm:update(dt)
   boards:update(dt)
   
-  for k,v in pairs(ingredients) do
-    ingredients[k]:update(dt)
-  end
+  --for k,v in pairs(ingredients) do
+  --  ingredients[k]:update(dt)
+  --end
   
 end
 
 function love.draw()
   
   log = ''
-  love.graphics.setColor(255, 255, 255)
   
   -- splash screen
   
   if level == 0 then
     love.graphics.setColor(255, 255, 255)
-    splashanm:draw(splashimg, winwidth/2.5, winheight/2.5)
+    splashanm:draw(splashimg, 768, 432)
     
     love.graphics.setColor(0, 0, 0)
     love.graphics.setFont(fontcutelrg)
-    love.graphics.print(title, winwidth/4.7, winheight/6)
+    love.graphics.print(title, 408, 180)
     
     love.graphics.setFont(fontreadmed)
-    love.graphics.print('press Z to begin', winwidth/2.25, winheight-200)
+    love.graphics.print('press Z to begin', 853, winheight-200)
     
     if love.keyboard.isDown('z') then
       level = level+1;

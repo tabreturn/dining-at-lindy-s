@@ -21,12 +21,11 @@ function Level:draw()
   love.graphics.draw(steam, 0, 0)
   
   lvl = love.graphics.newImage(self.imglevel)
-  love.graphics.draw(lvl, winwidth-lvl:getWidth()-winmargin, 0+winmargin)
+  love.graphics.draw(lvl, 1713, 0+winmargin)
 
   love.graphics.setColor(0, 0, 0)
   love.graphics.setFont(fontcutesml)
-  xtrapad = 20
-  love.graphics.print(level, winwidth-lvl:getWidth()+xtrapad, 10+winmargin+xtrapad)
+  love.graphics.print(level, 1783, 80)
 end
 
 return Level
