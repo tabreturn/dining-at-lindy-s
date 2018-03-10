@@ -1,15 +1,18 @@
-Button = {}
-Button.__index = Button
+local Ingredient = {}
 
-function Button.new(text)
-   local bn = {}
-   setmetatable(bn, Button)
+function Ingredient:create (x, y, img)
+  self.__index = self
 
-   bn.text = text
-   return bn
+  return setmetatable({
+    x = x,
+    y = y,
+    img = love.graphics.newImage(img),
+  }, self)
 end
 
-function Button:draw()
-  love.graphics.setColor(0, 0, 0)
-  love.graphics.print('HIIHIHIHIIHIHIHIHIHIHIHIHIHI', 300,300)
+function Ingredient:draw ()
+  love.graphics.setColor(255, 255, 255)
+ love.graphics.draw(self.img, self.x, self.y)
 end
+
+return Ingredient
