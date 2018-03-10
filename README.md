@@ -8,7 +8,7 @@ Artist: Mary Guo
 
 Made with [löve](https://love2d.org/) <3  
 Fonts: Cute Font by Paula Tennet; Quicksand be Andrew Paglinawan  
-Libraries: tween.lua by kikito
+Libraries: tween.lua & anim8.lua by kikito
 
 Open Jam Aotearoa 2018 entry
 (Game Jam theme: "soup")

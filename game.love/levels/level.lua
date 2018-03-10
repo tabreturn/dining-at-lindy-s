@@ -11,19 +11,20 @@ function Level:create(level, imgsoup, imglevel)
 end
 
 function Level:draw()
-  if self.imglevel then
-    bg = love.graphics.newImage('levels/background.png')
-    love.graphics.draw(bg, 0, 0)
-    lvl = love.graphics.newImage(self.imglevel)
-    love.graphics.draw(lvl, winwidth-lvl:getWidth()-winmargin, 0+winmargin)
-    love.graphics.setColor(0, 0, 0)
-    love.graphics.setFont(fontcute)
-    xtrapad = 10
-    love.graphics.print(level, winwidth-lvl:getWidth()+xtrapad, 0+winmargin+xtrapad)
-  end
-  
+  bg = love.graphics.newImage('levels/background.png')
+  love.graphics.draw(bg, 0, 0)
   love.graphics.setColor(255, 255, 255)
   love.graphics.draw(self.imgsoup, 0, 0)
+  
+  steam = love.graphics.newImage('levels/steam.png')
+  love.graphics.draw(steam, 0, 0)
+  
+  lvl = love.graphics.newImage(self.imglevel)
+  love.graphics.draw(lvl, winwidth-lvl:getWidth()-winmargin, 0+winmargin)
+  love.graphics.setColor(0, 0, 0)
+  love.graphics.setFont(fontcute)
+  xtrapad = 10
+  love.graphics.print(level, winwidth-lvl:getWidth()+xtrapad, 0+winmargin+xtrapad)
 end
 
 return Level

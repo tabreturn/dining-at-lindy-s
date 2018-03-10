@@ -1,22 +1,28 @@
+--tween      = require 'lib/tween'
+ingredient = require 'ingredients/ingredient'
+level      = require 'levels/level'
+anim8      = require 'lib/anim8'
+             local splashimg, splashanm
+
+title      = 'Dining at Lindy\'s'
+
 function love.load()
   
-  --tween      = require 'lib/tween'
-  ingredient = require 'ingredients/ingredient'
-  level      = require 'levels/level'
-    
   -- window setup
   
-  love.window.setTitle('Dining at Lindy\'s')
+  love.window.setTitle(title)
   winwidth   = 1920
   winheight  = 1080
   winmargin  = 50
   hdpiscale  = 2
   love.window.setMode(winwidth/hdpiscale, winheight/hdpiscale, {highdpi=true})
-  love.graphics.setBackgroundColor(160, 100, 50)
+  love.graphics.setBackgroundColor(255, 255, 255)
   
   -- assets
   
-  fontcute  = love.graphics.newFont('fonts/cute.ttf', 100)
+  fontcutesml  = love.graphics.newFont('fonts/cute.ttf', 50)
+  fontcutemed  = love.graphics.newFont('fonts/cute.ttf', 100)
+  fontcutelrg  = love.graphics.newFont('fonts/cute.ttf', 200)
   fontread  = love.graphics.newFont('fonts/quicksand.ttf', 35)
   
   ingredients = {
@@ -35,11 +41,16 @@ function love.load()
   }
   
   levels = {
-    level0 = level:create(0, 'levels/splash.png', false),
-    level1 = level:create(1, 'levels/soup1.png', 'levels/level1.png'),
-    level2 = level:create(2, 'levels/soup2.png', 'levels/level2.png'),
-    level3 = level:create(3, 'levels/soup3.png', 'levels/level3.png')
+    level1 = level:create(1, 'levels/soup1.png', 'levels/background.png', 'levels/level1.png'),
+    level2 = level:create(2, 'levels/soup2.png', 'levels/background.png', 'levels/level2.png'),
+    level3 = level:create(3, 'levels/soup3.png', 'levels/background.png', 'levels/level3.png')
   }
+  
+  -- animation
+  
+  splashimg = love.graphics.newImage('levels/splash.png')
+  splashgrd = anim8.newGrid(360, 353, splashimg:getWidth(), splashimg:getHeight())
+  splashanm = anim8.newAnimation(splashgrd('1-5',1), 0.25)
   
   -- stage variables
   
@@ -50,6 +61,8 @@ end
 
 
 function love.update(dt)
+  
+  splashanm:update(dt)
   
   for k,v in pairs(ingredients) do
     ingredients[k]:update(dt)
@@ -65,7 +78,12 @@ function love.draw()
   -- splash screen
   
   if level == 0 then
-    levels['level0']:draw()
+    love.graphics.setColor(255, 255, 255)
+    splashanm:draw(splashimg, winwidth/2.5, winheight/2)
+    
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.setFont(fontcutelrg)
+    love.graphics.print(title, winwidth/4.7, winheight/4)
     
     if love.keyboard.isDown('z') then
       level = level+1;
@@ -117,7 +135,7 @@ function love.draw()
   -- place ingredients
   
   for k,v in pairs(ingredients) do
-    ingredients[k]:draw()
+    --ingredients[k]:draw()
   end 
   
   -- quit game
