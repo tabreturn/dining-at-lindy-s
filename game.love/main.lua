@@ -15,17 +15,12 @@ function love.load()
   -- assets
   fontcute  = love.graphics.newFont('fonts/cute.ttf', 100)
   fontread  = love.graphics.newFont('fonts/quicksand.ttf', 35)
-  ingapple  = ingredient:create(100, 0, 'ingredients/apple.png')
-  ingcarrot = ingredient:create(500, 0, 'ingredients/carrot.png')
-  ingtofu   = ingredient:create(1200, 0, 'ingredients/tofu.png')
   
-  -- tweens
-  --posapple  = { x=100, y=0 }
-  --poscarrot = { x=400, y=0 }
-  --postofu   = { x=600, y=0 }
-  --twnapple  = tween.new(1.5, posapple, {y=300}, 'outBounce')
-  --twncarrot = tween.new(1.5, poscarrot, {y=300}, 'outBounce')
-  --twntofu   = tween.new(1.5, postofu, {y=300}, 'outBounce')
+  ingredients = {
+    ingapple  = ingredient:create(100, 0, 'ingredients/apple.png'),
+    ingcarrot = ingredient:create(500, 0, 'ingredients/carrot.png'),
+    ingtofu   = ingredient:create(1200, 0, 'ingredients/tofu.png')
+  }
   
   -- stage variables
   level = 0
@@ -36,18 +31,17 @@ end
 
 function love.update(dt)
   
-  -- tween updates
-  --twnapple:update(dt)
-  --twncarrot:update(dt)
-  --twntofu:update(dt)
+  for k,v in pairs(ingredients) do
+    ingredients[k]:update(dt)
+  end
   
 end
 
 function love.draw()
-  
-  ingapple:draw()
-  ingcarrot:draw()
-  ingtofu:draw()
+
+  for k,v in pairs(ingredients) do
+    ingredients[k]:draw()
+  end
   
   if 0 == 0 then
     love.graphics.setColor(0, 0, 0)
@@ -63,7 +57,6 @@ function love.draw()
   elseif love.keyboard.isDown('c') then
     log = 'c'
   end
-  
   
   -- quit game
   if love.keyboard.isDown('q') then
