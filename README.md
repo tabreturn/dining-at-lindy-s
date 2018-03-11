@@ -7,6 +7,8 @@ Download LÖVE [here](https://love2d.org/) to play the game. Once LÖVE is insta
 Save Mr. Yum by matching the correct ingredients board with the submerged silhouette (soupberg).  
 There is a **Z** / **X** / **C** on each board -- you simply press the corresponding key for your selection.
 
+![](screenshot.png)
+
 ## About
 
 "A number of 'Waiter ...' jokes are attributed to the notoriously rude waiters at Lindy's Restaurant in New York. Lindy's was started in August 1921 by Leo Lindemann and was as famous for the backchat of its waiters as for its clientele of comics, gangsters, show-biz stars and other celebrities."
