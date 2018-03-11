@@ -71,6 +71,7 @@ function love.load()
   fadetwn = tween.new(0.1, fadeprm, {o=fadeprm.o})
   
   introvid = love.graphics.newVideo('levels/intro.ogv')
+  intropld = false
   
   -- stage variables
   
@@ -113,10 +114,12 @@ function love.draw()
   
   if level == 0 then
     love.graphics.setColor(255, 255, 255)
-    --love.graphics.draw(introvid, 0, 0, 0, 6, 1)
     love.graphics.draw(introvid, 480, 190, 0, 0.5, 0.5)
     
-    introvid:play()
+    if intropld == false then
+      intropld = true
+      introvid:play()
+    end
     
     love.graphics.setColor(0, 0, 0)
     love.graphics.setFont(fontreadmed)
