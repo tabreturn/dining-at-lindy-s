@@ -209,7 +209,7 @@ function love.draw()
     end
     
     love.graphics.setColor(255, 255, 255)
-    avataranm:draw(avatarimg, winwidth-400, 432)
+    avataranm:draw(avatarimg, winwidth-400, winheight-400)
     
     fadeIn()
   end
@@ -237,6 +237,9 @@ function love.draw()
       keyrelz = false
     end
     
+    love.graphics.setColor(255, 255, 255)
+    avataranm:draw(avatarimg, winwidth-400, winheight-400)
+    
     fadeIn()
   end
   
@@ -262,6 +265,9 @@ function love.draw()
       nextLevel(-1)
       keyrelz = false
     end
+    
+    love.graphics.setColor(255, 255, 255)
+    avataranm:draw(avatarimg, winwidth-400, winheight-400)
     
     fadeIn()
   end
