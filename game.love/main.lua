@@ -80,9 +80,9 @@ function love.load()
   }
   
   levels = {
-    level1 = level:create(1, 'levels/soup1.png', 'levels/level1.png'),
-    level2 = level:create(2, 'levels/soup2.png', 'levels/level2.png'),
-    level3 = level:create(3, 'levels/soup3.png', 'levels/level3.png')
+    level1 = level:create(1, 'levels/soup1.png', 'levels/level1.png', 'levels/soupberg1.png'),
+    level2 = level:create(2, 'levels/soup2.png', 'levels/level2.png', 'levels/soupberg2.png'),
+    level3 = level:create(3, 'levels/soup3.png', 'levels/level3.png', 'levels/soupberg3.png'),
   }
   
   tombowl = love.graphics.newImage('tombowl.png')
