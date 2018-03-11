@@ -38,10 +38,6 @@ recipe3c = {
   'chicken','chicken','chicken'
 }
 
-local recposz = {y=-1100}
-local recposx = {y=-800}
-local recposc = {y=-500}
-local recanim = false;
 local twnz = tween.new(2, recposz, {y=recposz.y})
 local twnx = tween.new(2, recposx, {y=recposx.y})
 local twnc = tween.new(2, recposc, {y=recposc.y})

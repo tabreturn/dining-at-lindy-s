@@ -1,4 +1,4 @@
-
+  
 function love.load()
   
   tween = require 'lib/tween'
@@ -14,6 +14,29 @@ function love.load()
   hdpiscale  = 2
   love.window.setMode(winwidth/hdpiscale, winheight/hdpiscale, {highdpi=true})
   love.graphics.setBackgroundColor(255, 255, 255)
+  
+  -- animation
+  
+  splashimg = love.graphics.newImage('levels/splash.png')
+  splashgrd = anim8.newGrid(360, 353, splashimg:getWidth(), splashimg:getHeight())
+  splashanm = anim8.newAnimation(splashgrd('1-5',1), 0.25)
+  
+  brdpos1 = {x=-800}
+  brdpos2 = {x=-800}
+  brdpos3 = {x=-800}
+  brdanim = false;
+  
+  recposz = {y=-1100}
+  recposx = {y=-800}
+  recposc = {y=-500}
+  recanim = false;
+
+  fadeprm = {o=255}
+  fadeanim = false
+  fadetwn = tween.new(0.1, fadeprm, {o=fadeprm.o})
+  
+  introvid = love.graphics.newVideo('levels/intro.ogv')
+  intropld = false
   
   -- assets
   
@@ -34,7 +57,7 @@ function love.load()
   fontcutelrg  = love.graphics.newFont('fonts/cute.ttf', 200)
   fontreadsml  = love.graphics.newFont('fonts/quicksand.ttf', 15)
   fontreadmed  = love.graphics.newFont('fonts/quicksand.ttf', 30)
-  fontreadlrg  = love.graphics.newFont('fonts/quicksand.ttf', 50)
+  fontreadlrg  = love.graphics.newFont('fonts/quicksand.ttf', 40)
   
   ingredients = {
     apple     = love.graphics.newImage('ingredients/(clubs)apple.png'),
@@ -59,19 +82,6 @@ function love.load()
   
   recipes:create(ingredients)
   boards:create()
-  
-  -- animation
-  
-  splashimg = love.graphics.newImage('levels/splash.png')
-  splashgrd = anim8.newGrid(360, 353, splashimg:getWidth(), splashimg:getHeight())
-  splashanm = anim8.newAnimation(splashgrd('1-5',1), 0.25)
-
-  fadeprm = {o=255}
-  fadeanim = false
-  fadetwn = tween.new(0.1, fadeprm, {o=fadeprm.o})
-  
-  introvid = love.graphics.newVideo('levels/intro.ogv')
-  intropld = false
   
   -- stage variables
   
@@ -103,11 +113,13 @@ function love.draw()
     love.graphics.print(title, 408, 180)
     
     love.graphics.setFont(fontreadmed)
-    love.graphics.print('press enter to begin', 820, winheight-200)
+    love.graphics.print('<press enter to begin>', 800, winheight-200)
     
     if love.keyboard.isDown('return') then
-      level = level+1;
+      nextLevel(level+1)
     end
+    
+    fadeIn()
   end
   
   -- intro screen
@@ -122,12 +134,16 @@ function love.draw()
     end
     
     love.graphics.setColor(0, 0, 0)
+    love.graphics.setFont(fontreadlrg)
+    love.graphics.print('Quickly! Save Mr. Yum (or, Tom, to his friends) from drowning in your soup!', 280, winheight-260)
     love.graphics.setFont(fontreadmed)
-    love.graphics.print('press space to proceed', 780, winheight-200)
+    love.graphics.print('<press space to begin>', 800, winheight-150)
     
     if love.keyboard.isDown('space') then
-      level = level+1;
+      nextLevel(level+1)
     end
+    
+    fadeIn()
   end
   
   -- level 1
@@ -136,7 +152,6 @@ function love.draw()
     levels['level1']:draw()
     boards:draw()
     boards:animateIn()
-    
     recipes:draw(1)
     
     if brdsin then
@@ -144,15 +159,14 @@ function love.draw()
     end
     
     if love.keyboard.isDown('z') then
-      log = 'option z'
-      level = level+1;
+      nextLevel(level+1)
     elseif love.keyboard.isDown('x') then
-      log = 'option x'
-      level = 0;
+      nextLevel(-1)
     elseif love.keyboard.isDown('c') then
-      log = 'option c'
-      level = 0;
+      nextLevel(-1)
     end
+    
+    fadeIn()
   end
   
   -- level 2
@@ -161,36 +175,36 @@ function love.draw()
     levels['level2']:draw()
     boards:draw()
     boards:animateIn()
+    recipes:draw(2)
+    
+    --[[
+    if brdsin then
+      recipes:animateIn()
+    end
     
     if love.keyboard.isDown('z') then
-      log = 'option z'
+      fadeprm.o = 255
+      fadeanim = false
+      level = level+1
     elseif love.keyboard.isDown('x') then
-      log = 'option x'
+      fadeprm.o = 255
+      fadeanim = false
+      level = 0;
     elseif love.keyboard.isDown('c') then
-      log = 'option c'
+      fadeprm.o = 255
+      fadeanim = false
+      level = 0;
     end
+    ]]--
+    fadeIn()
   end
   
   -- level 3
   
   if level == 3 then
-    levels['level2']:draw()
-    
-    if love.keyboard.isDown('z') then
-      log = 'option z'
-    elseif love.keyboard.isDown('x') then
-      log = 'option x'
-    elseif love.keyboard.isDown('c') then
-      log = 'option c'
-    end
+    levels['level3']:draw()
   end
-  
-  -- fade in/out
-  
-  love.graphics.setColor(255, 255, 255, fadeprm.o)
-  love.graphics.rectangle('fill', 0, 0, winwidth, winheight)
-  fadeIn()
-  
+
   -- quit game
   
   if love.keyboard.isDown('q') then
@@ -199,9 +213,23 @@ function love.draw()
   
 end
 
+-- non-standard functions
 
+function nextLevel(lvl)
+  fadeprm.o = 255
+  fadeanim = false
+  brdanim = false
+  recanim = true
+  brdpos1.x = -800
+  brdpos2.x = -800
+  brdpos3.x = -800
+  level = lvl
+end
 
 function fadeIn()
+  love.graphics.setColor(255, 255, 255, fadeprm.o)
+  love.graphics.rectangle('fill', 0, 0, winwidth, winheight)
+  
   if fadeanim == false then
     fadetwn = tween.new(1.5, fadeprm, {o=0}, 'linear')
   end

@@ -1,9 +1,5 @@
 Boards = {}
 
-local brdpos1 = {x=-800}
-local brdpos2 = {x=-800}
-local brdpos3 = {x=-800}
-local brdanim = false;
 local twn1 = tween.new(0.1, brdpos1, {x=brdpos1.x})
 local twn2 = tween.new(0.1, brdpos2, {x=brdpos2.x})
 local twn3 = tween.new(0.1, brdpos3, {x=brdpos3.x})
