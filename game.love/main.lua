@@ -85,6 +85,8 @@ function love.load()
     level3 = level:create(3, 'levels/soup3.png', 'levels/level3.png')
   }
   
+  tombowl = love.graphics.newImage('tombowl.png')
+  
   recipes:create(ingredients)
   boards:create()
   
