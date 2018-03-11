@@ -1,4 +1,5 @@
-  
+-- love.draw
+
 function love.load()
   
   tween = require 'lib/tween'
@@ -20,6 +21,10 @@ function love.load()
   splashimg = love.graphics.newImage('levels/splash.png')
   splashgrd = anim8.newGrid(360, 353, splashimg:getWidth(), splashimg:getHeight())
   splashanm = anim8.newAnimation(splashgrd('1-5',1), 0.25)
+  
+  avatarimg = love.graphics.newImage('tomavatar.png')
+  avatargrd = anim8.newGrid(400, 400, avatarimg:getWidth(), avatarimg:getHeight())
+  avataranm = anim8.newAnimation(avatargrd('1-2',1), 0.25)
   
   brdpos1 = {x=-800}
   brdpos2 = {x=-800}
@@ -94,15 +99,7 @@ function love.load()
 
 end
 
-
-function love.update(dt)
-
-  splashanm:update(dt)
-  boards:update(dt)
-  recipes:update(dt)
-  fadetwn:update(dt)
-  
-end
+-- additional key listners
 
 function love.keyreleased(key)
    if key == 'space' then
@@ -118,6 +115,26 @@ function love.keyreleased(key)
       keyrelc = true
    end
 end
+
+function love.keypressed(key)
+  if key == 'q' then
+    love.event.quit(0)
+  end
+end
+
+-- love.update
+
+function love.update(dt)
+
+  splashanm:update(dt)
+  avataranm:update(dt)
+  boards:update(dt)
+  recipes:update(dt)
+  fadetwn:update(dt)
+  
+end
+
+-- love.draw
 
 function love.draw()
   
@@ -190,6 +207,9 @@ function love.draw()
       nextLevel(-1)
       keyrelz = false
     end
+    
+    love.graphics.setColor(255, 255, 255)
+    avataranm:draw(avatarimg, winwidth-400, 432)
     
     fadeIn()
   end
