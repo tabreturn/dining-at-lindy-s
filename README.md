@@ -15,8 +15,6 @@ Open Jam Aotearoa 2018 entry
 
 ## To-Do
 
-* key input selection
-* bubble animation
-* answer match
+* ...
 
 
