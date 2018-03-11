@@ -114,7 +114,8 @@ function love.draw()
   if level == 0 then
     love.graphics.setColor(255, 255, 255)
     --love.graphics.draw(introvid, 0, 0, 0, 6, 1)
-    love.graphics.draw(introvid, 520, 220, 0, 2.5, 0.5)
+    love.graphics.draw(introvid, 480, 190, 0, 0.5, 0.5)
+    
     introvid:play()
     
     love.graphics.setColor(0, 0, 0)
