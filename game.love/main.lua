@@ -85,9 +85,11 @@ function love.load()
   
   -- stage variables
   
-  keyrelz = true
-  keyrelx = true
-  keyrelc = true
+  keyrelspc = true
+  keyrelz   = true
+  keyrelx   = true
+  keyrelc   = true
+  
   level = -1
 
 end
@@ -103,6 +105,9 @@ function love.update(dt)
 end
 
 function love.keyreleased(key)
+   if key == 'space' then
+      keyrelspc = true
+   end
    if key == 'z' then
       keyrelz = true
    end
@@ -128,10 +133,11 @@ function love.draw()
     love.graphics.print(title, 408, 180)
     
     love.graphics.setFont(fontreadmed)
-    love.graphics.print('<press enter to begin>', 800, winheight-200)
+    love.graphics.print('< press space to begin >', 790, winheight-200)
     
-    if love.keyboard.isDown('return') then
+    if love.keyboard.isDown('space') and keyrelspc then
       nextLevel(level+1)
+      keyrelspc = false
     end
     
     fadeIn()
@@ -141,7 +147,7 @@ function love.draw()
   
   if level == 0 then
     love.graphics.setColor(255, 255, 255)
-    love.graphics.draw(introvid, 480, 190, 0, 0.5, 0.5)
+    love.graphics.draw(introvid, 480, 180, 0, 0.5, 0.5)
     
     if intropld == false then
       intropld = true
@@ -152,10 +158,11 @@ function love.draw()
     love.graphics.setFont(fontreadlrg)
     love.graphics.print('Quickly! Save Mr. Yum (or, Tom, to his friends) from drowning in your soup!', 280, winheight-260)
     love.graphics.setFont(fontreadmed)
-    love.graphics.print('<press space to begin>', 800, winheight-150)
+    love.graphics.print('< press space to proceed >', 770, winheight-150)
     
-    if love.keyboard.isDown('space') then
+    if love.keyboard.isDown('space') and keyrelspc then
       nextLevel(level+1)
+      keyrelspc = false
     end
     
     fadeIn()
@@ -217,12 +224,26 @@ function love.draw()
   
   if level == 3 then
     levels['level3']:draw()
-  end
-
-  -- quit game
-  
-  if love.keyboard.isDown('q') then
-    love.event.quit(0)
+    boards:draw()
+    boards:animateIn()
+    recipes:draw(3)
+    
+    if brdsin then
+      recipes:animateIn()
+    end
+    
+    if love.keyboard.isDown('z') and keyrelz then
+      nextLevel(level+1)
+      keyrelz = false
+    elseif love.keyboard.isDown('x') and keyrelx then
+      nextLevel(-1)
+      keyrelz = false
+    elseif love.keyboard.isDown('c') and keyrelc then
+      nextLevel(-1)
+      keyrelz = false
+    end
+    
+    fadeIn()
   end
   
 end
