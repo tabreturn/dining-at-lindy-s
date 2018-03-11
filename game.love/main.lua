@@ -85,6 +85,9 @@ function love.load()
     level3 = level:create(3, 'levels/soup3.png', 'levels/level3.png', 'levels/soupberg3.png'),
   }
   
+  endwin = love.graphics.newImage('levels/endwin.png')
+  endlose = love.graphics.newImage('levels/endlose.png')
+  
   tombowl = love.graphics.newImage('tombowl.png')
   
   recipes:create(ingredients)
@@ -200,10 +203,10 @@ function love.draw()
     end
     
     if love.keyboard.isDown('z') and keyrelz then
-      nextLevel(-1)
+      nextLevel(-2)
       keyrelz = false
     elseif love.keyboard.isDown('x') and keyrelx then
-      nextLevel(-1)
+      nextLevel(-2)
       keyrelx = false
     elseif love.keyboard.isDown('c') and keyrelc then
       nextLevel(level+1)
@@ -229,13 +232,13 @@ function love.draw()
     end
     
     if love.keyboard.isDown('z') and keyrelz then
-      nextLevel(-1)
+      nextLevel(-2)
       keyrelz = false
     elseif love.keyboard.isDown('x') and keyrelx then
       nextLevel(level+1)
       keyrelx = false
     elseif love.keyboard.isDown('c') and keyrelc then
-      nextLevel(-1)
+      nextLevel(-2)
       keyrelc = false
     end
     
@@ -258,10 +261,10 @@ function love.draw()
     end
     
     if love.keyboard.isDown('z') and keyrelz then
-      nextLevel(-1)
+      nextLevel(-2)
       keyrelz = false
     elseif love.keyboard.isDown('x') and keyrelx then
-      nextLevel(-1)
+      nextLevel(-2)
       keyrelx = false
     elseif love.keyboard.isDown('c') and keyrelc then
       nextLevel(level+1)
@@ -270,6 +273,44 @@ function love.draw()
     
     love.graphics.setColor(255, 255, 255)
     avataranm:draw(avatarimg, winwidth-400, winheight-400)
+    
+    fadeIn()
+  end
+  
+  -- win
+  
+  if level == 4 then
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.draw(endwin, 0, 0)
+    
+    if love.keyboard.isDown('space') and keyrelspc then
+      nextLevel(-1)
+      keyrelspc = false
+    end
+    
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.setFont(fontreadlrg)
+    love.graphics.print('You saved Mr. Yum!', 780, winheight-260)
+    love.graphics.setFont(fontreadmed)
+    love.graphics.print('< press space to return to the start screen >', 660, winheight-150)
+    
+    fadeIn()
+  end
+  
+  if level == -2 then
+    love.graphics.setColor(255, 255, 255)
+    love.graphics.draw(endlose, 0, 0)
+    
+    if love.keyboard.isDown('space') and keyrelspc then
+      nextLevel(-1)
+      keyrelspc = false
+    end
+    
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.setFont(fontreadlrg)
+    love.graphics.print('Mr. Yum has drowned!', 750, winheight-260)
+    love.graphics.setFont(fontreadmed)
+    love.graphics.print('< press space to return to the start screen >', 660, winheight-150)
     
     fadeIn()
   end
