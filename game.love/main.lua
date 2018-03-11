@@ -22,6 +22,10 @@ function love.load()
   splashgrd = anim8.newGrid(360, 353, splashimg:getWidth(), splashimg:getHeight())
   splashanm = anim8.newAnimation(splashgrd('1-5',1), 0.25)
   
+  bubbleimg = love.graphics.newImage('levels/soupbubbles.png')
+  bubblegrd = anim8.newGrid(772, 427, bubbleimg:getWidth(), bubbleimg:getHeight())
+  bubbleanm = anim8.newAnimation(bubblegrd('1-4',1), 2.5)
+  
   avatarimg = love.graphics.newImage('tomavatar.png')
   avatargrd = anim8.newGrid(400, 400, avatarimg:getWidth(), avatarimg:getHeight())
   avataranm = anim8.newAnimation(avatargrd('1-2',1), 0.25)
@@ -133,6 +137,7 @@ function love.update(dt)
 
   splashanm:update(dt)
   avataranm:update(dt)
+  bubbleanm:update(dt)
   boards:update(dt)
   recipes:update(dt)
   fadetwn:update(dt)

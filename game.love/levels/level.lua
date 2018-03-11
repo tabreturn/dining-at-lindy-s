@@ -21,6 +21,9 @@ function Level:draw()
   love.graphics.draw(levelstm, 0, 0)
   love.graphics.draw(self.imglevel, 1713, 0+winmargin)
   
+  love.graphics.setColor(255, 255, 255, 90)
+  bubbleanm:draw(bubbleimg, 768, 432)
+  
   love.graphics.setColor(0, 0, 0, 40)
   love.graphics.draw(self.soupberg, 800, 250, 0)
   
