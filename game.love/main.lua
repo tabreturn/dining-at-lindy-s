@@ -70,9 +70,11 @@ function love.load()
   fadeanim = false
   fadetwn = tween.new(0.1, fadeprm, {o=fadeprm.o})
   
+  introvid = love.graphics.newVideo('levels/intro.ogv')
+  
   -- stage variables
   
-  level = 0
+  level = -1
 
 end
 
@@ -90,7 +92,7 @@ function love.draw()
   
   -- splash screen
   
-  if level == 0 then
+  if level == -1 then
     
     love.graphics.setColor(255, 255, 255)
     splashanm:draw(splashimg, 768, 432)
@@ -103,6 +105,23 @@ function love.draw()
     love.graphics.print('press enter to begin', 820, winheight-200)
     
     if love.keyboard.isDown('return') then
+      level = level+1;
+    end
+  end
+  
+  -- intro screen
+  
+  if level == 0 then
+    love.graphics.setColor(255, 255, 255)
+    --love.graphics.draw(introvid, 0, 0, 0, 6, 1)
+    love.graphics.draw(introvid, 520, 220, 0, 2.5, 0.5)
+    introvid:play()
+    
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.setFont(fontreadmed)
+    love.graphics.print('press space to proceed', 780, winheight-200)
+    
+    if love.keyboard.isDown('space') then
       level = level+1;
     end
   end
