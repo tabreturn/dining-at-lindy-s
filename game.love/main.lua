@@ -1,4 +1,3 @@
-local splashimg, splashanm
 
 function love.load()
   
@@ -66,6 +65,10 @@ function love.load()
   splashimg = love.graphics.newImage('levels/splash.png')
   splashgrd = anim8.newGrid(360, 353, splashimg:getWidth(), splashimg:getHeight())
   splashanm = anim8.newAnimation(splashgrd('1-5',1), 0.25)
+
+  fadeprm = {o=255}
+  fadeanim = false
+  fadetwn = tween.new(0.1, fadeprm, {o=fadeprm.o})
   
   -- stage variables
   
@@ -79,17 +82,17 @@ function love.update(dt)
   splashanm:update(dt)
   boards:update(dt)
   recipes:update(dt)
+  fadetwn:update(dt)
   
 end
 
 function love.draw()
-
-  love.graphics.setColor(255, 255, 255)
   
   -- splash screen
   
   if level == 0 then
     
+    love.graphics.setColor(255, 255, 255)
     splashanm:draw(splashimg, 768, 432)
     
     love.graphics.setColor(0, 0, 0)
@@ -108,7 +111,6 @@ function love.draw()
   
   if level == 1 then
     levels['level1']:draw()
-    
     boards:draw()
     boards:animateIn()
     
@@ -134,6 +136,8 @@ function love.draw()
   
   if level == 2 then
     levels['level2']:draw()
+    boards:draw()
+    boards:animateIn()
     
     if love.keyboard.isDown('z') then
       log = 'option z'
@@ -158,11 +162,11 @@ function love.draw()
     end
   end
   
-  -- place ingredients
+  -- fade in/out
   
-  --for k,v in pairs(ingredients) do
-    --ingredients[k]:draw()
-  --end 
+  love.graphics.setColor(255, 255, 255, fadeprm.o)
+  love.graphics.rectangle('fill', 0, 0, winwidth, winheight)
+  fadeIn()
   
   -- quit game
   
@@ -170,4 +174,14 @@ function love.draw()
     love.event.quit(0)
   end
   
+end
+
+
+
+function fadeIn()
+  if fadeanim == false then
+    fadetwn = tween.new(1.5, fadeprm, {o=0}, 'linear')
+  end
+  
+  fadeanim = true;
 end
