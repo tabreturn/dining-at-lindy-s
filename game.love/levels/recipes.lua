@@ -3,39 +3,41 @@ Recipes = {}
 -- level 1 recipes
 
 recipe1z = {
-  'apple','apple','egg','corn',
-  'icecream','tofu','chicken','cheese'
+  'sushi','apple','corn'
 }
 recipe1x = {
-  'egg','mushroom'
+  'icecream','egg','tofu'
 }
 recipe1c = {
-  'tofu','tofu','tofu','tofu',
-  'tofu','tofu'
+  'tofu','egg','carrot'
 }
 
 -- level 2 recipes
 
 recipe2z = {
-  'cheese','cheese'
+  'icecream','mushroom','corn','apple'
 }
 recipe2x = {
-  'egg','egg'
+  'chicken','icecream','corn','egg'
 }
 recipe2c = {
-  'chicken','chicken'
+  'apple','carrot','chicken','icecream',
+  'mushroom'
 }
 
 -- level 3 recipes
 
 recipe3z = {
-  'cheese','cheese', 'cheese'
+  'apple','pepper','carrot','chicken',
+  'tofu'
 }
 recipe3x = {
-  'egg','egg','egg'
+  'egg','apple','squid','cheese',
+  'carrot','mushroom'
 }
 recipe3c = {
-  'chicken','chicken','chicken'
+  'cheese','apple','corn','squid',
+  'mushroom','pepper'
 }
 
 local twnz = tween.new(2, recposz, {y=recposz.y})

@@ -200,14 +200,14 @@ function love.draw()
     end
     
     if love.keyboard.isDown('z') and keyrelz then
-      nextLevel(level+1)
+      nextLevel(-1)
       keyrelz = false
     elseif love.keyboard.isDown('x') and keyrelx then
       nextLevel(-1)
-      keyrelz = false
+      keyrelx = false
     elseif love.keyboard.isDown('c') and keyrelc then
-      nextLevel(-1)
-      keyrelz = false
+      nextLevel(level+1)
+      keyrelc = false
     end
     
     love.graphics.setColor(255, 255, 255)
@@ -229,14 +229,14 @@ function love.draw()
     end
     
     if love.keyboard.isDown('z') and keyrelz then
-      nextLevel(level+1)
+      nextLevel(-1)
       keyrelz = false
     elseif love.keyboard.isDown('x') and keyrelx then
-      nextLevel(-1)
-      keyrelz = false
+      nextLevel(level+1)
+      keyrelx = false
     elseif love.keyboard.isDown('c') and keyrelc then
       nextLevel(-1)
-      keyrelz = false
+      keyrelc = false
     end
     
     love.graphics.setColor(255, 255, 255)
@@ -258,14 +258,14 @@ function love.draw()
     end
     
     if love.keyboard.isDown('z') and keyrelz then
-      nextLevel(level+1)
+      nextLevel(-1)
       keyrelz = false
     elseif love.keyboard.isDown('x') and keyrelx then
       nextLevel(-1)
-      keyrelz = false
+      keyrelx = false
     elseif love.keyboard.isDown('c') and keyrelc then
-      nextLevel(-1)
-      keyrelz = false
+      nextLevel(level+1)
+      keyrelc = false
     end
     
     love.graphics.setColor(255, 255, 255)
