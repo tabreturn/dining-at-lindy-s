@@ -198,6 +198,8 @@ function love.draw()
   -- level 1
   
   if level == 1 then
+    intropld = false
+    
     levels['level1']:draw()
     boards:draw()
     boards:animateIn()
