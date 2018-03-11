@@ -286,7 +286,7 @@ function love.draw()
   
   if level == 4 then
     love.graphics.setColor(255, 255, 255)
-    love.graphics.draw(endwin, 0, 0)
+    love.graphics.draw(endwin, 480, 180, 0, 0.5)
     
     if love.keyboard.isDown('space') and keyrelspc then
       nextLevel(-1)
@@ -304,7 +304,7 @@ function love.draw()
   
   if level == -2 then
     love.graphics.setColor(255, 255, 255)
-    love.graphics.draw(endlose, 0, 0)
+    love.graphics.draw(endlose, 750, 300, 0, 0.4)
     
     if love.keyboard.isDown('space') and keyrelspc then
       nextLevel(-1)
