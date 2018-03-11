@@ -85,6 +85,9 @@ function love.load()
   
   -- stage variables
   
+  keyrelz = true
+  keyrelx = true
+  keyrelc = true
   level = -1
 
 end
@@ -97,6 +100,18 @@ function love.update(dt)
   recipes:update(dt)
   fadetwn:update(dt)
   
+end
+
+function love.keyreleased(key)
+   if key == 'z' then
+      keyrelz = true
+   end
+   if key == 'x' then
+      keyrelx = true
+   end
+   if key == 'c' then
+      keyrelc = true
+   end
 end
 
 function love.draw()
@@ -158,12 +173,15 @@ function love.draw()
       recipes:animateIn()
     end
     
-    if love.keyboard.isDown('z') then
+    if love.keyboard.isDown('z') and keyrelz then
       nextLevel(level+1)
-    elseif love.keyboard.isDown('x') then
+      keyrelz = false
+    elseif love.keyboard.isDown('x') and keyrelx then
       nextLevel(-1)
-    elseif love.keyboard.isDown('c') then
+      keyrelz = false
+    elseif love.keyboard.isDown('c') and keyrelc then
       nextLevel(-1)
+      keyrelz = false
     end
     
     fadeIn()
@@ -177,25 +195,21 @@ function love.draw()
     boards:animateIn()
     recipes:draw(2)
     
-    --[[
     if brdsin then
       recipes:animateIn()
     end
     
-    if love.keyboard.isDown('z') then
-      fadeprm.o = 255
-      fadeanim = false
-      level = level+1
-    elseif love.keyboard.isDown('x') then
-      fadeprm.o = 255
-      fadeanim = false
-      level = 0;
-    elseif love.keyboard.isDown('c') then
-      fadeprm.o = 255
-      fadeanim = false
-      level = 0;
+    if love.keyboard.isDown('z') and keyrelz then
+      nextLevel(level+1)
+      keyrelz = false
+    elseif love.keyboard.isDown('x') and keyrelx then
+      nextLevel(-1)
+      keyrelz = false
+    elseif love.keyboard.isDown('c') and keyrelc then
+      nextLevel(-1)
+      keyrelz = false
     end
-    ]]--
+    
     fadeIn()
   end
   
@@ -218,11 +232,18 @@ end
 function nextLevel(lvl)
   fadeprm.o = 255
   fadeanim = false
+  
   brdanim = false
-  recanim = true
   brdpos1.x = -800
   brdpos2.x = -800
   brdpos3.x = -800
+  brdsin = false
+  
+  recanim = false
+  recposz = {y=-1100}
+  recposx = {y=-800}
+  recposc = {y=-500}
+  
   level = lvl
 end
 
