@@ -1,4 +1,4 @@
-# Dining at Lindy's
+# jam-dining-at-lindys
 
 ## Instructions
 
