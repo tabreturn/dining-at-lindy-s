@@ -1,5 +1,7 @@
 # jam-dining-at-lindys
 
+Open Jam Aotearoa 2018 entry 
+
 ## Instructions
 
 Download LÖVE [here](https://love2d.org/) to play the game. Once LÖVE is installed, run the "dining_at_lindys.love" file.
