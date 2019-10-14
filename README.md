@@ -1,4 +1,4 @@
-# jam-dining-at-lindys
+# Dining at Lindy's
 
 Open Jam Aotearoa 2018 entry 
 
