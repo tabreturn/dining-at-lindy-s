@@ -1,6 +1,6 @@
 # Dining at Lindy's
 
-Open Jam Aotearoa 2018 entry 
+*Open Jam Aotearoa 2018 entry*
 
 ## Instructions
 
