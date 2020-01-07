@@ -28,4 +28,4 @@ Libraries: tween.lua & anim8.lua by kikito
 
 ## To-Do
 
-* It's a game jam effort ... it'll do
+- [x] It's a game jam effort ... it'll do
